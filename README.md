@@ -53,11 +53,16 @@ As this gets done, each entry is put in a dictionary, with the used ID as key. T
 A similar processing is done witht he targets, but without the gender attached at the end, obiously.
 
 ## trainNN.py
-This builds, trains and validates the neural network. Then, it is used to run predictions on the target data and the results are saed on a csv file.
-  
+This builds, trains and validates a standard feedforward neural network. Then, it runs predictions on the target data and the results are saved on a csv file.
 
+First the data set is split into train and test set on a 70/30 proportion. The neural network is then built with the following structure:
+- Layers:
+  - inputs: 14 features.
+  - hidden layer 1: 4\*input = 56 neurons
+  - hidden layer 2: 1 + hl1/5 = 1 + 11 = 12 neurons
+  - output: 1 boolean label
+- Neurons: all have the sigmoid activation function.
 
+The training runs for 200 epochs, with a learning rate of 0.01. Te cost function is the MSE. The optimizer is the Adam optimizer, provided by TensorFlow. The training data is fed into the network by batches of 500 points.
 
-  
-  
-  
+After the training is complete, validation is run. Then, the target data is fed onto the network. The results are matched with the according user ID, and the gender output value is translatated into 'M' or 'F'. This list with user IDs and genders are then wrriten on a csv file.
