@@ -34,7 +34,7 @@ def x_y_separation(dataset):
     return x, y
 
 #split intro training and test set
-split_ratio = 1.0
+split_ratio = 0.7
 train_size = int(len(data_set) * split_ratio)
 
 temp_set = np.stack(data_set)
@@ -138,7 +138,7 @@ for i in range(len(deliv)):
     else:
         deliv[i][1] = 'M'
 
-with open('deliverable5noV.csv','w') as resfile:
+with open('deliverable.csv','w') as resfile:
     wr = csv.writer(resfile,dialect='excel')
     wr.writerows(deliv)
 
