@@ -1,7 +1,9 @@
 # LNC-Challenge
-Repo with the solution for the 2017 Linx-Nemu-Chaordic Data Science Challenge
+Repo with the solution for the 2017 Linx-Nemu-Chaordic Data Science Challenge.
 
-Files are not 100% clean. There is commented code and methods are not optimized. Please ignore sloppiness.
+The project was run on Python 3.5.2. It uses no external modules, with exception to **trainNN.py**, that uses numpy and TensorFlow.
+
+Files are not 100% clean. There are commented lines of code and methods are not optimized. Please ignore sloppiness.
 
 ## How does it work tl;dr
 1. First, all the csv files are imported and the names of the labels cleaned ('{"pid:",' -> 'pid:'). This is done on the **"import" scripts**.
@@ -11,7 +13,7 @@ Files are not 100% clean. There is commented code and methods are not optimized.
 - Source: [desktop? mobile?]
 - Page_type: [cart? checkout? search? category? subcategory? confirm? home? brand? other? product?]
 - Purchase?
-- Product index
+- Product_index
 
   This is done to each batapoint and then an average for all data points for each user is done. This will later become the input o the NN for each user. This is done on **processData.py**.
 
@@ -35,6 +37,24 @@ Maybe more importantly, a few methods for quick analysis and check on data were 
   - check_all([100,200,173], 'source', san_data, 'NaN') -> (2, [173])
   
 ## processData.py
+This script executes all the 3 import scripts. The first thing that it does is calculate a gender-based index for every product on the catalog based on what users bought on the data set. The index is an average of genders that bought said item. For example, if 3 men and 1 women bought item X, its index would be (3\*(0)+1\*(1))/4 = 0.25
+
+After that, each data point (user-generated event on the database) is transformed into a vector containing:
+- The used ID.
+- A sumary of the event, of the format:
+  - Source \<boolean\>: [desktop? mobile?]. A 'NaN' would become a [0 0]
+  - Page_type \<boolean\>: [cart? checkout? search? category? subcategory? confirm? home? brand? other? product?]
+  - Purchase? \<boolean\>: is this a purchase?
+  - Product_Index \<-1:1\>: what was bought? What's its index?
+- Gender \<boolean\>: 1 for female, 0 for male.
+
+As this gets done, each entry is put in a dictionary, with the used ID as key. Then, a list is produced from the dictionary, with each entry being the aerage of all the navigation data of each user. This is what will be used for the training process.
+
+A similar processing is done witht he targets, but without the gender attached at the end, obiously.
+
+## trainNN.py
+This builds, trains and validates the neural network. Then, it is used to run predictions on the target data and the results are saed on a csv file.
+  
 
 
 
