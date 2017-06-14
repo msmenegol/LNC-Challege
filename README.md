@@ -1,7 +1,7 @@
 # LNC-Challenge
 Repo with the solution for the 2017 Linx-Nemu-Chaordic Data Science Challenge.
 
-The project was run on Python 3.5.2. It uses no external modules, with exception to **trainNN.py**, that uses numpy and TensorFlow.
+The project was run on Python 3.5.2. It uses no external modules, with the exception of **trainNN.py**, that uses numpy and TensorFlow.
 
 Files are not 100% clean. There are commented lines of code and methods are not optimized. Please ignore sloppiness.
 
