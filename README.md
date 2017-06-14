@@ -5,6 +5,8 @@ The project was run on Python 3.5.2. It uses no external modules, with exception
 
 Files are not 100% clean. There are commented lines of code and methods are not optimized. Please ignore sloppiness.
 
+I've used this link as a quick reference: https://www.analyticsvidhya.com/blog/2016/10/an-introduction-to-implementing-neural-networks-using-tensorflow/. Always give credit where credit is due. :)
+
 ## How does it work tl;dr
 1. First, all the csv files are imported and the names of the labels cleaned ('{"pid:",' -> 'pid:'). This is done on the **"import" scripts**.
 
