@@ -31,7 +31,10 @@ for i in range(len(san_data)):
             gender = san_data[i][j+1]
     for k in range(len(pid)):
         if pid[k] in pIndex:
-            pIndex.update({pid[k] : [pIndex[pid[k]][0] + gender, pIndex[pid[k]][1] + 1]})
+            if gender>0.5: #if female
+                pIndex.update({pid[k] : [pIndex[pid[k]][0] + 1, pIndex[pid[k]][1] + 1]})
+            else:
+                pIndex.update({pid[k] : [pIndex[pid[k]][0] - 1, pIndex[pid[k]][1] + 1]})
 
 for p in pIndex.keys():
     if pIndex[p][1] < 1: #if this product was not in the dataset
